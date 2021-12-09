@@ -1,5 +1,5 @@
 import UIKit
 
-protocol CollectionBasedView: UIView {
+public protocol CollectionBasedView: UIView {
     var collectionView: UICollectionView { get }
 }
