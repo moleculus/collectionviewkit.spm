@@ -1,6 +1,6 @@
 import UIKit
 
-class CollectionViewController<UI: CollectionBasedView>: UIViewController {
+open class CollectionViewController<UI: CollectionBasedView>: UIViewController {
     
     // MARK: - UI Properties.
     
@@ -38,7 +38,7 @@ class CollectionViewController<UI: CollectionBasedView>: UIViewController {
         ui.frame = parent?.view.frame ?? presentingViewController?.view.frame ?? CGRect(x: 0, y: 0, width: 375, height: 812)
     }
     
-    override func viewSafeAreaInsetsDidChange() {
+    open override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         self.biggestTopSafeAreaInset = max(ui.safeAreaInsets.top, biggestTopSafeAreaInset)
     }
@@ -46,11 +46,11 @@ class CollectionViewController<UI: CollectionBasedView>: UIViewController {
 }
 
 extension CollectionViewController: ScrollsToTop {
-    func isScrolledToTop() -> Bool {
+    public func isScrolledToTop() -> Bool {
         return ui.collectionView.contentOffset.y == -biggestTopSafeAreaInset
     }
     
-    func scrollToTop(animated: Bool) {
+    public func scrollToTop(animated: Bool) {
         ui.collectionView.setContentOffset(CGPoint(x: 0, y: -biggestTopSafeAreaInset), animated: animated)
     }
 }
