@@ -40,7 +40,10 @@ open class CollectionViewController<UI: CollectionBasedView>: UIViewController {
     
     open override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-        self.biggestTopSafeAreaInset = max(ui.safeAreaInsets.top, biggestTopSafeAreaInset)
+        
+        if !ui.refreshControl.isRefreshing {
+            self.biggestTopSafeAreaInset = max(ui.safeAreaInsets.top, biggestTopSafeAreaInset)
+        }
     }
     
 }
