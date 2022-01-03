@@ -48,12 +48,12 @@ open class CollectionViewController<UI: CollectionBasedView>: UIViewController, 
     
     // MARK: - ScrollsToTop.
     
-    @objc
+    @objc dynamic
     open func isScrolledToTop() -> Bool {
         return ui.collectionView.contentOffset.y == -biggestTopSafeAreaInset
     }
     
-    @objc
+    @objc dynamic
     open func scrollToTop(animated: Bool) {
         ui.collectionView.setContentOffset(CGPoint(x: 0, y: -biggestTopSafeAreaInset), animated: animated)
     }
