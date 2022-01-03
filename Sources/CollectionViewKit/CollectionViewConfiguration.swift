@@ -4,8 +4,8 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     // MARK: - Injected Properties.
     
-    private let collectionView: UICollectionView
-    private let viewController: UIViewController
+    private weak var collectionView: UICollectionView!
+    private weak var viewController: UIViewController!
     
     // MARK: - Properties.
     
