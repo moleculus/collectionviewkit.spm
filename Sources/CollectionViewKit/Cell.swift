@@ -21,10 +21,6 @@ public class Cell<CustomView>: UICollectionViewCell where CustomView: UIView {
         
         contentView.addSubview(customView)
         customView.translatesAutoresizingMaskIntoConstraints = false
-        customView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        customView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        customView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        customView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     }
     
     @available(*, unavailable, message: "Loading this view from a nib is unsupported")
@@ -37,6 +33,11 @@ public class Cell<CustomView>: UICollectionViewCell where CustomView: UIView {
     public override func prepareForReuse() {
         super.prepareForReuse()
         prepareViewForReuse(contentView)
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        customView.frame = contentView.bounds
     }
     
     // MARK: - Private Methods.
