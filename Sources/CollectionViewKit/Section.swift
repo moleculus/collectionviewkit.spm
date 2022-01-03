@@ -1,6 +1,6 @@
 import UIKit
 
-open class Section<Cell: UICollectionViewCell>: SectionLayoutConfigurator, SectionDataSource {
+open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionDataSource {
 
     // MARK: - Initialization.
     
@@ -13,17 +13,17 @@ open class Section<Cell: UICollectionViewCell>: SectionLayoutConfigurator, Secti
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.reuseIdentifier, for: indexPath) as! Cell
-        render(cell, at: indexPath)
-        return cell
+        return collectionView.dequeue(reusableView: ReusableView.self, for: indexPath) { [weak self] in
+            self?.render($0, at: indexPath)
+        }
     }
     
-    open func render(_ ui: Cell, at indexPath: IndexPath) {
+    open func render(_ ui: ReusableView, at indexPath: IndexPath) {
         
     }
     
     public func registerCell(collectionView: UICollectionView) {
-        collectionView.register(Cell.self, forCellWithReuseIdentifier: Cell.reuseIdentifier)
+        collectionView.register(reusableView: ReusableView.self)
     }
     
     // MARK: - Layout.
