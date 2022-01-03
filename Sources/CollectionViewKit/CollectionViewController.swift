@@ -1,6 +1,6 @@
 import UIKit
 
-open class CollectionViewController<UI: CollectionBasedView>: UIViewController {
+open class CollectionViewController<UI: CollectionBasedView>: UIViewController, ScrollsToTop {
     
     // MARK: - UI Properties.
     
@@ -46,14 +46,13 @@ open class CollectionViewController<UI: CollectionBasedView>: UIViewController {
         }
     }
     
-}
-
-extension CollectionViewController: ScrollsToTop {
-    public func isScrolledToTop() -> Bool {
+    // MARK: - ScrollsToTop.
+    
+    open func isScrolledToTop() -> Bool {
         return ui.collectionView.contentOffset.y == -biggestTopSafeAreaInset
     }
     
-    public func scrollToTop(animated: Bool) {
+    open func scrollToTop(animated: Bool) {
         ui.collectionView.setContentOffset(CGPoint(x: 0, y: -biggestTopSafeAreaInset), animated: animated)
     }
 }
