@@ -9,7 +9,7 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     // MARK: - Properties.
     
-    open var sections: [SectionLayoutConfigurator & SectionDataSource] = [] {
+    public var sections: [SectionLayoutConfigurator & SectionDataSource] = [] {
         didSet {
             for section in sections {
                 section.registerCell(collectionView: collectionView)
@@ -17,9 +17,11 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
         }
     }
     
+    public var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
+    
     // MARK: - Computed Properties.
     
-    open var compositionalLayoutConfiguration: UICollectionViewCompositionalLayoutConfiguration {
+    public var compositionalLayoutConfiguration: UICollectionViewCompositionalLayoutConfiguration {
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
         
         configuration.scrollDirection = .vertical
@@ -58,12 +60,15 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
         return sections[indexPath.section].collectionView(collectionView, cellForItemAt: indexPath)
     }
     
-    // MARK: - Private Methods.
+    // MARK: - UICollectionViewCompositionalLayout.
     
-    open func section(section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+    private func section(section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
         let section = sections[section]
         let environment = LayoutEnvironment(collectionLayoutEnvironment: environment, collectionView: collectionView, viewController: viewController)
-        return section.section(environment: environment)
+        
+        let layoutSection = section.section(environment: environment)
+        layoutSection.visibleItemsInvalidationHandler = visibleItemsInvalidationHandler
+        return layoutSection
     }
     
 }
