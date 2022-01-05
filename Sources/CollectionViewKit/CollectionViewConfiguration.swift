@@ -1,5 +1,7 @@
 import UIKit
 
+protocol Checkable: Hashable {}
+
 public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     // MARK: - Injected Properties.
@@ -21,8 +23,8 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     // MARK: - Computed Properties.
     
-    public lazy var dataSource = UICollectionViewDiffableDataSource<Int, Section>(collectionView: collectionView) { collectionView, indexPath, section in
-        return section.collectionView(collectionView, cellForItemAt: indexPath)
+    public lazy var dataSource = UICollectionViewDiffableDataSource<Section, UUID>(collectionView: collectionView) { collectionView, indexPath, _ in
+        return self.sections[indexPath.section].collectionView(collectionView, cellForItemAt: indexPath)
     }
     
     public var compositionalLayoutConfiguration: UICollectionViewCompositionalLayoutConfiguration {
