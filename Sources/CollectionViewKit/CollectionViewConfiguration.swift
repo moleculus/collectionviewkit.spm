@@ -49,6 +49,12 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     // MARK: - Public Methods.
     
     public func reloadSections(_ sections: [SectionLayoutConfigurator & SectionDataSource & Reloadable]) {
+        guard self.sections.count == sections.count else {
+            self.sections = sections
+            self.collectionView.reloadData()
+            return
+        }
+        
         var sectionsToReload: [Int] = []
         
         for i in 0..<sections.count {
