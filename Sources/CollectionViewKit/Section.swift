@@ -81,7 +81,7 @@ open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionData
         return lhs.hashValue == rhs.hashValue
     }
     
-    public func hash(into hasher: inout Hasher) {
+    open func hash(into hasher: inout Hasher) {
         hasher.combine(UUID())
     }
     
