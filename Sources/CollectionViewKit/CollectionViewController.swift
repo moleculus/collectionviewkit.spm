@@ -22,7 +22,7 @@ open class CollectionViewController<UI: CollectionBasedView>: UIViewController, 
         navigationItem.backButtonDisplayMode = .minimal
         
         ui.collectionView.collectionViewLayout = configuration.compositionalLayout
-        ui.collectionView.dataSource = configuration.dataSource
+        ui.collectionView.dataSource = configuration
     }
     
     @available(*, unavailable, message: "Loading this controller from a nib is unsupported")
