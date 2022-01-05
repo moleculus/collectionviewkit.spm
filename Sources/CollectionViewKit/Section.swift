@@ -1,6 +1,6 @@
 import UIKit
 
-open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionDataSource, Hashable {
+open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionDataSource, Reloadable, Hashable {
 
     // MARK: - Initialization.
     
