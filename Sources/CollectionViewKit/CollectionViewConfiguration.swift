@@ -65,8 +65,6 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
         
         self.sections = sections
         self.collectionView.reloadSections(IndexSet(sectionsToReload))
-        
-        print(sectionsToReload)
     }
     
     // MARK: - UICollectionViewDataSource.
