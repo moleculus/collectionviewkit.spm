@@ -1,6 +1,6 @@
 import UIKit
 
-open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionDataSource {
+open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionDataSource, Hashable {
 
     // MARK: - Initialization.
     
@@ -74,6 +74,15 @@ open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionData
         
         return section
     }
+    
+    // MARK: - Hashable.
+    
+    public static func == (lhs: Section<ReusableView>, rhs: Section<ReusableView>) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(UUID())
+    }
+    
 }
-
-

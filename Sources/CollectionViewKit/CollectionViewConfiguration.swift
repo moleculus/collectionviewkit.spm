@@ -21,6 +21,10 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     // MARK: - Computed Properties.
     
+    public lazy var dataSource = UICollectionViewDiffableDataSource<Int, Section>(collectionView: collectionView) { collectionView, indexPath, section in
+        return section.collectionView(collectionView, cellForItemAt: indexPath)
+    }
+    
     public var compositionalLayoutConfiguration: UICollectionViewCompositionalLayoutConfiguration {
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
         
