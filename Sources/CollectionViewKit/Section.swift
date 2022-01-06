@@ -4,9 +4,7 @@ open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionData
 
     // MARK: - Properties.
     
-    open var id: String {
-        return UUID().uuidString
-    }
+    open var id: String = UUID().uuidString
     
     // MARK: - Initialization.
     
@@ -79,6 +77,13 @@ open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionData
         section.visibleItemsInvalidationHandler = nil
         
         return section
+    }
+    
+    // MARK: - Identifier.
+    
+    public func with(identifier: String) -> Self {
+        self.id = identifier
+        return self
     }
         
 }
