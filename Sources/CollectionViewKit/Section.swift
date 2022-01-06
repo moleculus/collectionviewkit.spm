@@ -1,7 +1,13 @@
 import UIKit
 
-open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionDataSource, Reloadable, Hashable {
+open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionDataSource, Identifiable {
 
+    // MARK: - Properties.
+    
+    open var id: String {
+        return UUID().uuidString
+    }
+    
     // MARK: - Initialization.
     
     public init() {}
@@ -74,15 +80,5 @@ open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionData
         
         return section
     }
-    
-    // MARK: - Hashable.
-    
-    public static func == (lhs: Section<ReusableView>, rhs: Section<ReusableView>) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-    
-    open func hash(into hasher: inout Hasher) {
-        hasher.combine(UUID())
-    }
-    
+        
 }

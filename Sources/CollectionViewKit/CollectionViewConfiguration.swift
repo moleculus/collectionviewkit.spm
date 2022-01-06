@@ -9,7 +9,7 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     // MARK: - Properties.
     
-    public var sections: [SectionLayoutConfigurator & SectionDataSource & Reloadable] = [] {
+    public var sections: [SectionLayoutConfigurator & SectionDataSource] = [] {
         didSet {
             for section in sections {
                 section.registerCell(collectionView: collectionView)
@@ -44,27 +44,6 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     public init(collectionView: UICollectionView, viewController: UIViewController) {
         self.collectionView = collectionView
         self.viewController = viewController
-    }
-    
-    // MARK: - Public Methods.
-    
-    public func reloadSections(_ sections: [SectionLayoutConfigurator & SectionDataSource & Reloadable]) {
-        guard self.sections.count == sections.count else {
-            self.sections = sections
-            self.collectionView.reloadData()
-            return
-        }
-        
-        var sectionsToReload: [Int] = []
-        
-        for i in 0..<sections.count {
-            if sections[i].hashValue != self.sections[i].hashValue {
-                sectionsToReload.append(i)
-            }
-        }
-        
-        self.sections = sections
-        self.collectionView.reloadSections(IndexSet(sectionsToReload))
     }
     
     // MARK: - UICollectionViewDataSource.
