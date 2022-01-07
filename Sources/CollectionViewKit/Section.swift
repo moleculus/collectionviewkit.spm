@@ -1,7 +1,9 @@
 import UIKit
 
-open class Section<ReusableView: UIView>: SectionLayoutConfigurator, SectionDataSource, Identifiable {
-
+open class Section: SectionLayoutConfigurator, SectionDataSource, Identifiable {
+    
+    public typealias ReusableView = UIView
+    
     // MARK: - Properties.
     
     open var id: String = UUID().uuidString
