@@ -83,7 +83,7 @@ open class Section: SectionLayoutConfigurator, SectionDataSource, Identifiable {
     
     // MARK: - Identifier.
     
-    public func with(identifier: String) -> Self {
+    public func identified(by identifier: String) -> Self {
         self.id = identifier
         return self
     }
