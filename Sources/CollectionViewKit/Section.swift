@@ -1,12 +1,10 @@
 import UIKit
 
-open class Section: SectionLayoutConfigurator, SectionDataSource, Identifiable {
-    
-    public typealias ReusableView = UIView
-    
+open class Section<UI: UIView>: SectionLayoutConfigurator, SectionDataSource {
+        
     // MARK: - Properties.
     
-    open var id: String = UUID().uuidString
+    open var identifier: String = UUID().uuidString
     
     // MARK: - Initialization.
     
@@ -19,17 +17,17 @@ open class Section: SectionLayoutConfigurator, SectionDataSource, Identifiable {
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeue(reusableView: ReusableView.self, for: indexPath) { [weak self] in
+        return collectionView.dequeue(reusableView: UI.self, for: indexPath) { [weak self] in
             self?.render($0, at: indexPath)
         }
     }
     
-    open func render(_ ui: ReusableView, at indexPath: IndexPath) {
+    open func render(_ ui: UI, at indexPath: IndexPath) {
         
     }
     
     public func registerCell(collectionView: UICollectionView) {
-        collectionView.register(reusableView: ReusableView.self)
+        collectionView.register(reusableView: UI.self)
     }
     
     // MARK: - Layout.
@@ -84,7 +82,7 @@ open class Section: SectionLayoutConfigurator, SectionDataSource, Identifiable {
     // MARK: - Identifier.
     
     public func identified(by identifier: String) -> Self {
-        self.id = identifier
+        self.identifier = identifier
         return self
     }
         
