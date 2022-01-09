@@ -9,7 +9,7 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     // MARK: - Properties.
     
-    public var sections: [SectionLayoutConfigurator & SectionDataSource] = [] {
+    public var sections: [SectionLayoutConfigurator & SectionDataSource & Identifier] = [] {
         didSet {
             for section in sections {
                 section.registerCell(collectionView: collectionView)
