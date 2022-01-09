@@ -1,6 +1,6 @@
 import UIKit
 
-open class Section<UI: UIView>: SectionLayoutConfigurator, SectionDataSource {
+open class Section<UI: UIView>: SectionLayoutConfigurator, SectionDataSource, Identifier {
         
     // MARK: - Properties.
     
