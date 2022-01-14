@@ -8,11 +8,7 @@ open class CollectionViewController<UI: CollectionBasedView>: UIViewController, 
     
     // MARK: - Properties.
     
-    public lazy var configuration = CollectionViewConfiguration(
-        collectionView: ui.collectionView,
-        viewController: self
-    )
-    
+    public lazy var configuration = CollectionViewConfiguration(collectionView: ui.collectionView)
     public var biggestTopSafeAreaInset: CGFloat = 0
     
     // MARK: - Initialization.

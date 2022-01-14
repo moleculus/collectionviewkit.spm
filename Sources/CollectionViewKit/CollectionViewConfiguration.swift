@@ -5,7 +5,6 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     // MARK: - Injected Properties.
     
     private weak var collectionView: UICollectionView!
-    private weak var viewController: UIViewController!
     
     // MARK: - Properties.
     
@@ -41,9 +40,8 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     // MARK: - Initialization.
     
-    public init(collectionView: UICollectionView, viewController: UIViewController) {
+    public init(collectionView: UICollectionView) {
         self.collectionView = collectionView
-        self.viewController = viewController
     }
     
     // MARK: - UICollectionViewDataSource.
@@ -64,7 +62,7 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     private func section(section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
         let section = sections[section]
-        let environment = LayoutEnvironment(collectionLayoutEnvironment: environment, collectionView: collectionView, viewController: viewController)
+        let environment = LayoutEnvironment(collectionLayoutEnvironment: environment, collectionView: collectionView)
         
         let layoutSection = section.section(environment: environment)
         layoutSection.visibleItemsInvalidationHandler = visibleItemsInvalidationHandler
