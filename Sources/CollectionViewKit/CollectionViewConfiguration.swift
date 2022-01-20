@@ -16,6 +16,12 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
         }
     }
     
+    public var nestedSections: [[SectionLayoutConfigurator & SectionDataSource & Identifier]] = [] {
+        didSet {
+            self.sections = nestedSections.flatMap { $0 }
+        }
+    }
+    
     public var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
     
     // MARK: - Computed Properties.
@@ -37,7 +43,7 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
             configuration: compositionalLayoutConfiguration
         )
     }
-    
+            
     // MARK: - Initialization.
     
     public init(collectionView: UICollectionView) {
