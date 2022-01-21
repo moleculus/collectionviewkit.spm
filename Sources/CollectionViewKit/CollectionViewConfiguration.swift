@@ -8,15 +8,9 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     // MARK: - Properties.
     
-    public var sections: [LayoutSectionProvider] = [] {
+    public var sections: [LayoutSection] = [] {
         didSet {
-            flattendSections = sections.flatMap { $0.sections }
-        }
-    }
-    
-    private var flattendSections: [LayoutSection] = [] {
-        didSet {
-            for section in flattendSections {
+            for section in sections {
                 section.registerCell(collectionView: collectionView)
             }
         }
@@ -57,17 +51,17 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return flattendSections[section].collectionView(collectionView, numberOfItemsInSection: section)
+        return sections[section].collectionView(collectionView, numberOfItemsInSection: section)
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return flattendSections[indexPath.section].collectionView(collectionView, cellForItemAt: indexPath)
+        return sections[indexPath.section].collectionView(collectionView, cellForItemAt: indexPath)
     }
     
     // MARK: - UICollectionViewCompositionalLayout.
     
     private func section(section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
-        let section = flattendSections[section]
+        let section = sections[section]
         let environment = LayoutEnvironment(collectionLayoutEnvironment: environment, collectionView: collectionView)
         
         let layoutSection = section.section(environment: environment)

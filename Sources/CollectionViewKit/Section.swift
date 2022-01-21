@@ -1,6 +1,6 @@
 import UIKit
 
-open class Section<UI: UIView>: LayoutSection, LayoutSectionProvider {
+open class Section<UI: UIView>: LayoutSection {
             
     // MARK: - Properties.
     
@@ -85,11 +85,5 @@ open class Section<UI: UIView>: LayoutSection, LayoutSectionProvider {
         self.identifier = identifier
         return self
     }
-    
-    // MARK: - LayoutSectionProvider.
-    
-    public var sections: [LayoutSection] {
-        return [self]
-    }
-        
+            
 }
