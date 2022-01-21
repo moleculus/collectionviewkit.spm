@@ -1,7 +1,7 @@
 import UIKit
 
-open class Section<UI: UIView>: SectionLayoutConfigurator, SectionDataSource, Identifier {
-        
+open class Section<UI: UIView>: LayoutSection, LayoutSectionProvider {
+            
     // MARK: - Properties.
     
     open var identifier: String = UUID().uuidString
@@ -84,6 +84,12 @@ open class Section<UI: UIView>: SectionLayoutConfigurator, SectionDataSource, Id
     public func identified(by identifier: String) -> Self {
         self.identifier = identifier
         return self
+    }
+    
+    // MARK: - LayoutSectionProvider.
+    
+    public var sections: [LayoutSection] {
+        return [self]
     }
         
 }

@@ -8,17 +8,17 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     // MARK: - Properties.
     
-    public var sections: [SectionLayoutConfigurator & SectionDataSource & Identifier] = [] {
+    public var sections: [LayoutSectionProvider] = [] {
         didSet {
-            for section in sections {
-                section.registerCell(collectionView: collectionView)
-            }
+            flattendSections = sections.flatMap { $0.sections }
         }
     }
     
-    public var nestedSections: [[SectionLayoutConfigurator & SectionDataSource & Identifier]] = [] {
+    private var flattendSections: [LayoutSection] = [] {
         didSet {
-            self.sections = nestedSections.flatMap { $0 }
+            for section in flattendSections {
+                section.registerCell(collectionView: collectionView)
+            }
         }
     }
     
@@ -57,17 +57,17 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sections[section].collectionView(collectionView, numberOfItemsInSection: section)
+        return flattendSections[section].collectionView(collectionView, numberOfItemsInSection: section)
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return sections[indexPath.section].collectionView(collectionView, cellForItemAt: indexPath)
+        return flattendSections[indexPath.section].collectionView(collectionView, cellForItemAt: indexPath)
     }
     
     // MARK: - UICollectionViewCompositionalLayout.
     
     private func section(section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
-        let section = sections[section]
+        let section = flattendSections[section]
         let environment = LayoutEnvironment(collectionLayoutEnvironment: environment, collectionView: collectionView)
         
         let layoutSection = section.section(environment: environment)
