@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 public protocol Identifier {
-    var identifier: String? { get set }
+    var identifier: String { get set }
 }
 
 public extension Identifier {
