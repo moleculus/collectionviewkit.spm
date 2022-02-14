@@ -7,10 +7,19 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     private weak var collectionView: UICollectionView!
     
     // MARK: - Properties.
-    
-    public var sections: [LayoutSection] = []
+        
     public var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
     public var scrollDirection: UICollectionView.ScrollDirection = .vertical
+    
+    // MARK: - Observed Properties.
+    
+    public var sections: [LayoutSection] = [] {
+        didSet {
+            for section in sections {
+                section.registerCells(in: collectionView)
+            }
+        }
+    }
     
     // MARK: - Computed Properties.
     

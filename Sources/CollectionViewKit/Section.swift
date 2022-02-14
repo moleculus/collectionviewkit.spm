@@ -19,6 +19,10 @@ open class Section: LayoutSection {
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         fatalError()
     }
+    
+    open func registerCells(in collectionView: UICollectionView) {
+        fatalError()
+    }
         
     // MARK: - Layout.
     
