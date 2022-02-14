@@ -8,16 +8,8 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     // MARK: - Properties.
     
-    public var sections: [LayoutSection] = [] {
-        didSet {
-            for section in sections {
-                section.registerCell(collectionView: collectionView)
-            }
-        }
-    }
-    
+    public var sections: [LayoutSection] = []
     public var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
-    
     public var scrollDirection: UICollectionView.ScrollDirection = .vertical
     
     // MARK: - Computed Properties.

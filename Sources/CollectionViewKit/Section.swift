@@ -1,6 +1,6 @@
 import UIKit
 
-open class Section<UI: UIView>: LayoutSection {
+open class Section: LayoutSection {
             
     // MARK: - Properties.
     
@@ -17,19 +17,9 @@ open class Section<UI: UIView>: LayoutSection {
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeue(reusableView: UI.self, for: indexPath) { [weak self] in
-            self?.render($0, at: indexPath)
-        }
+        fatalError()
     }
-    
-    open func render(_ ui: UI, at indexPath: IndexPath) {
         
-    }
-    
-    public func registerCell(collectionView: UICollectionView) {
-        collectionView.register(reusableView: UI.self)
-    }
-    
     // MARK: - Layout.
     
     open func layoutSize(environment: LayoutEnvironment) -> NSCollectionLayoutSize {
