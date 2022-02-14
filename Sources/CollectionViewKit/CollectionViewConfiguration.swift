@@ -18,16 +18,17 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
     
     public var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
     
+    public var scrollDirection: UICollectionView.ScrollDirection = .vertical
+    
     // MARK: - Computed Properties.
     
     public var compositionalLayoutConfiguration: UICollectionViewCompositionalLayoutConfiguration {
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
         
-        configuration.scrollDirection = .vertical
+        configuration.scrollDirection = scrollDirection
         configuration.contentInsetsReference = .safeArea
         configuration.interSectionSpacing = 0
-        configuration.boundarySupplementaryItems = []
-        
+                
         return configuration
     }
     
