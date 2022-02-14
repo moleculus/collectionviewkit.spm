@@ -26,7 +26,7 @@ public extension SectionLayoutConfigurator {
 
         return .vertical(layoutSize: layoutSize, subitems: [item])
     }
-
+    
     func section(environment: LayoutEnvironment) -> NSCollectionLayoutSection {
         let group = group(environment: environment)
         let section = NSCollectionLayoutSection(group: group)
