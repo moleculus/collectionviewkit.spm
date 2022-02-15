@@ -10,6 +10,7 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
         
     public var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
     public var scrollDirection: UICollectionView.ScrollDirection = .vertical
+    public var contentInsetsReference: UIContentInsetsReference = .safeArea
     
     // MARK: - Observed Properties.
     
@@ -27,9 +28,8 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
         
         configuration.scrollDirection = scrollDirection
-        configuration.contentInsetsReference = .safeArea
-        configuration.interSectionSpacing = 0
-                
+        configuration.contentInsetsReference = contentInsetsReference
+                        
         return configuration
     }
     
