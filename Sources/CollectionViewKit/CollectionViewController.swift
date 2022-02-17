@@ -19,6 +19,7 @@ open class CollectionViewController<UI: CollectionBasedView>: UIViewController, 
         
         ui.collectionView.collectionViewLayout = configuration.compositionalLayout
         ui.collectionView.dataSource = configuration
+        ui.collectionView.delegate = configuration
     }
     
     @available(*, unavailable, message: "Loading this controller from a nib is unsupported")
