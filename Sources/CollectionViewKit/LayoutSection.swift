@@ -1,3 +1,3 @@
 import Foundation
 
-public protocol LayoutSection: SectionLayoutConfigurator & SectionDataSource & Identifier {}
+public protocol LayoutSection: SectionLayoutConfigurator & SectionDataSource & LayoutSectionDelegate & Identifier {}

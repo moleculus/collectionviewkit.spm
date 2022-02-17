@@ -1,6 +1,6 @@
 import UIKit
 
-public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
+public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: - Injected Properties.
     
@@ -69,6 +69,12 @@ public class CollectionViewConfiguration: NSObject, UICollectionViewDataSource {
         let layoutSection = section.section(environment: environment)
         layoutSection.visibleItemsInvalidationHandler = visibleItemsInvalidationHandler
         return layoutSection
+    }
+    
+    // MARK: - UICollectionViewDelegate.
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        sections[indexPath.section].collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
 }
